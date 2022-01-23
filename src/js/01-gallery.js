@@ -35,6 +35,12 @@ const galleryHandler = (event) => {
   const instance = basicLightbox.create(`
     <img src="${originalUrl}">`)
 
+    document.addEventListener('keydown', function(event){
+      if(event.key === "Escape"){
+        instance.close();
+      }
+    });
+
    instance.show()
 
 }
