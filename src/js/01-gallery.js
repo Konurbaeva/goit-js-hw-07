@@ -1,6 +1,6 @@
 import { galleryItems } from './gallery-items.js';
 
-/* const galleryEl = document.querySelector('.gallery');
+ const galleryEl = document.querySelector('.gallery');
 
 // шаблон элемента галереи
 const galleryItemsMarkup = item => {
@@ -42,46 +42,5 @@ const galleryHandler = (event) => {
 
 
 galleryEl.insertAdjacentHTML('beforeend', galleryInserted);
-galleryEl.addEventListener('click', galleryHandler); */
+galleryEl.addEventListener('click', galleryHandler);
 
-const makeImageCard = ({description, original, preview}) =>{
-
-  const imageClassEl = document.createElement('img');
-  imageClassEl.classList.add('gallery__item')
-  
-  const descriptionEl = document.createElement('a');
-  descriptionEl.classList.add('gallery__link');
-  descriptionEl.textContent = description;
-  
-  
-  const imageEl = document.createElement('gallery__image');
-  imageEl.href = original;
-  imageEl.dataset.source = original;
-  
-  imageClassEl.append(descriptionEl, imageEl);
-  
-  return imageClassEl;
-  }
-
-  const elements = galleryItems.map(makeImageCard);
-
-  const galleryEl = document.querySelector('.gallery');
-  
-  const handler = (event) => {
-    event.preventDefault();
-  
-    if(event.target.nodeName != 'IMG') return;
-  
-    const url = event.target.dataset.source;
-  
-    const instance = basicLightbox.create(`
-      <img src="${url}">`)
-  
-     instance.show()
-  
-  }
-
-  galleryEl.insertAdjacentHTML('beforeend', elements);
-  galleryEl.addEventListener('click', handler);
-
-  
