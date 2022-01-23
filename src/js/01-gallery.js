@@ -67,7 +67,21 @@ const makeImageCard = ({description, original, preview}) =>{
 
   const galleryEl = document.querySelector('.gallery');
   
-  galleryEl.insertAdjacentHTML('beforeend', elements);
+  const handler = (event) => {
+    event.preventDefault();
   
+    if(event.target.nodeName != 'IMG') return;
+  
+    const url = event.target.dataset.source;
+  
+    const instance = basicLightbox.create(`
+      <img src="${url}">`)
+  
+     instance.show()
+  
+  }
+
+  galleryEl.insertAdjacentHTML('beforeend', elements);
+  galleryEl.addEventListener('click', handler);
 
   
