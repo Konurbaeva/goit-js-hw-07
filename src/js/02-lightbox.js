@@ -24,7 +24,7 @@ const lightBoxGalleryInserted = galleryItems
   const handler = (event) => {
     event.preventDefault();
     //Инициализация библиотеки SimpleLightbox 
-    let gallery = new SimpleLightbox('.gallery a', {captionsData: `alt`});
+    let gallery = new SimpleLightbox('.gallery a', {captionsData: `alt`, captionDelay: 250});
     gallery.on('show.simplelightbox', function () {
       
 });
