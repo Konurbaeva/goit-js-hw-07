@@ -31,24 +31,28 @@ const galleryHandler = (event) => {
   if(event.target.nodeName != 'IMG') return;
 
   const originalUrl = event.target.dataset.source;
+  const imgLightBoxEl = `<img src="${originalUrl}">`;
 
-  const instance = basicLightbox.create(`
-    <img src="${originalUrl}">`)
+  function basicLightBoxHandler(event){
 
-    const basicLightBoxHander = function(event){
-      if(event.key === "Escape"){
-        instance.close();
-      }
+    if(event.key === "Escape"){
+      instance.close();
     }
+  }
 
-    document.addEventListener('keydown', basicLightBoxHander);
-    document.removeEventListener('keydown', basicLightBoxHander);
+  const options ={
+    onShow: () => {
+      document.addEventListener("keydown", basicLightBoxHandler)
+    },
+    onClose: () => {
+      document.removeEventListener("keydown", basicLightBoxHandler)
+    } 
+  }
 
-    instance.show();
+  const instance = basicLightbox.create(imgLightBoxEl, options)
+
+  document.querySelector('div.gallery').onclick = instance.show()
 }
-
-
 
 galleryEl.insertAdjacentHTML('beforeend', galleryInserted);
 galleryEl.addEventListener('click', galleryHandler);
-
